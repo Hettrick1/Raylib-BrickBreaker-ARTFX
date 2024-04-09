@@ -6,6 +6,7 @@ private:
 	Rectangle mPaddleRectangle;
 	Vector2 mPaddleSpeed = { 350, 0 };
 public:
+	Paddle();
 	Paddle(Rectangle paddlePos);
 	~Paddle();
 	void Move(float deltaTime, const int WIDTH);

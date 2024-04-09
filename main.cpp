@@ -1,19 +1,18 @@
 #include "raylib.h"
 #include "Ball.h"
+#include "GameManager.h"
 #include <iostream>
 
 const int WIDTH = 1080;
 const int HEIGHT = 720;
 
-Ball ball;
-Paddle paddle = Paddle(Rectangle{WIDTH/2, HEIGHT - HEIGHT/10, 120, 10});
+GameManager gm = GameManager(WIDTH, HEIGHT);
 
 void Load();
 void Start();
 void Update();
 void Draw();
 void Unload();
-
 
 int main() {
 
@@ -35,20 +34,19 @@ void Load()
 
 void Start()
 {
+    gm.CreateGame();
 }
 
 void Update()
 {
-    ball.Update(WIDTH, HEIGHT, paddle);
-    paddle.Update(WIDTH);
+    gm.Update();
 }
 
 void Draw()
 {
     BeginDrawing();
     ClearBackground(WHITE);
-    paddle.DrawPaddle();
-    ball.DrawBall();
+    gm.Draw();
     EndDrawing();
 }
 

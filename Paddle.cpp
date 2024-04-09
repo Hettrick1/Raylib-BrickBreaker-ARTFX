@@ -1,5 +1,9 @@
 #include "Paddle.h"
 
+Paddle::Paddle()
+{
+}
+
 Paddle::Paddle(Rectangle paddlePos)
 {
 	mPaddleRectangle = paddlePos;

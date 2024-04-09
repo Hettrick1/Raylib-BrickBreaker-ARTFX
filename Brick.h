@@ -1,5 +1,6 @@
 #pragma once
 #include "raylib.h"
+#include "Ball.h"
 class Brick
 {
 private:
@@ -9,11 +10,13 @@ private:
 	int mLife;
 	bool mIsDestroyed;
 public:
+	Brick();
 	Brick(Rectangle brickRectangle, Vector2 mapCoordinates, int lifes, Color color);
 	~Brick();
-	void Update();
+	void Update(Ball& ball);
 	void Draw();
 	void LooseLife();
+	bool CheckCollisions(Ball ball);
 	Rectangle GetBrickRectangle();
 	Vector2 GetMapCoordinates();
 	int GetLife();

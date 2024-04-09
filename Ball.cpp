@@ -60,6 +60,11 @@ void Ball::BounceY()
     speed.y *= -1;
 }
 
+int Ball::GetRadius()
+{
+    return BALLRADIUS;
+}
+
 Vector2 Ball::GetPosition()
 {
     return ballPos;

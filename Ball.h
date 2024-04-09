@@ -17,6 +17,7 @@ public:
 	void DrawBall();
 	void BounceX();
 	void BounceY();
+	int GetRadius();
 	Vector2 GetPosition();
 };
 
