@@ -4,9 +4,9 @@
 class Ball
 {
 private:
-	Vector2 ballPos = { 400, 250 };
-	Vector2 speed = { 200, 200 };
-	Vector2 maxSpeed = { 200, 200 };
+	Vector2 mBallPos = { 400, 250 };
+	Vector2 mSpeed = { 200, 200 };
+	Vector2 mMaxSpeed = { 200, 200 };
 	const int BALLRADIUS = 10;
 public:
 	Ball();
@@ -18,6 +18,9 @@ public:
 	void BounceX();
 	void BounceY();
 	int GetRadius();
+	void SetSpeed(Vector2 speed);
+	void SetPos(Vector2 position);
+	Vector2 GetSpeed();
 	Vector2 GetPosition();
 };
 

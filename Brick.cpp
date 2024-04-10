@@ -26,9 +26,26 @@ void Brick::Update(Ball& ball)
 {
 	if (!mIsDestroyed) {
 		if (CheckCollisions(ball)) {
-			mColor = RED;
-			ball.BounceY();
-			LooseLife();
+			if (ball.GetPosition().x - ball.GetRadius()-1 / 2 <= mBrickRectangle.x) {
+				mColor = RED;
+				ball.SetSpeed(Vector2{ -ball.GetSpeed().x, std::abs(ball.GetSpeed().y) });
+				LooseLife();
+			}
+			else if (ball.GetPosition().x + ball.GetRadius()+1 / 2 >= mBrickRectangle.x + mBrickRectangle.width) {
+				mColor = RED;
+				ball.SetSpeed(Vector2{ -ball.GetSpeed().x, std::abs(ball.GetSpeed().y) });
+				LooseLife();
+			}
+			if (ball.GetPosition().y - ball.GetRadius()-1 / 2 <= mBrickRectangle.y) {
+				mColor = RED;
+				ball.SetSpeed(Vector2{ std::abs(ball.GetSpeed().x), -ball.GetSpeed().y });
+				LooseLife();
+			}
+			else if (ball.GetPosition().y + ball.GetRadius()+1 / 2 >= mBrickRectangle.y + mBrickRectangle.height) {
+				mColor = RED;
+				ball.SetSpeed(Vector2{ std::abs(ball.GetSpeed().x), -ball.GetSpeed().y });
+				LooseLife();
+			}
 		}
 	}
 }

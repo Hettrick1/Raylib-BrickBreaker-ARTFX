@@ -18,46 +18,46 @@ void Ball::Update(const int WIDTH, const int HEIGHT, Paddle paddle)
 
 void Ball::Move(float deltaTime)
 {
-    ballPos.x += speed.x * deltaTime;
-    ballPos.y += speed.y * deltaTime;
+    mBallPos.x += mSpeed.x * deltaTime;
+    mBallPos.y += mSpeed.y * deltaTime;
 }
 
 void Ball::CheckCollision(const int WIDTH, const int HEIGHT, Paddle paddle)
 {
-    if (ballPos.x - BALLRADIUS < 0 || ballPos.x + BALLRADIUS > WIDTH) {
+    if (mBallPos.x - BALLRADIUS < 0 || mBallPos.x + BALLRADIUS > WIDTH) {
         BounceX();
     }
-    else if (ballPos.y - BALLRADIUS < 0 || ballPos.y + BALLRADIUS > HEIGHT) {
+    else if (mBallPos.y - BALLRADIUS < 0 || mBallPos.y + BALLRADIUS > HEIGHT) {
         BounceY();
     }
-    if (ballPos.y + BALLRADIUS / 2 >= paddle.GetPaddleRect().y && ballPos.x - BALLRADIUS / 2 > paddle.GetPaddleRect().x && ballPos.x + BALLRADIUS / 2 < paddle.GetPaddleRect().x + paddle.GetPaddleRect().width)
+    if (mBallPos.y + BALLRADIUS / 2 >= paddle.GetPaddleRect().y && mBallPos.x - BALLRADIUS / 2 > paddle.GetPaddleRect().x && mBallPos.x + BALLRADIUS / 2 < paddle.GetPaddleRect().x + paddle.GetPaddleRect().width)
     {
-        float collisionPosition = (ballPos.x - (paddle.GetPaddleRect().x + paddle.GetPaddleRect().width/2));
+        float collisionPosition = (mBallPos.x - (paddle.GetPaddleRect().x + paddle.GetPaddleRect().width/2));
 
-        float newSpeedY = speed.x * std::abs(collisionPosition) / paddle.GetPaddleRect().width / 2;
+        float newSpeedY = mSpeed.x * std::abs(collisionPosition) / (paddle.GetPaddleRect().width / 2);
 
-        speed.x = newSpeedY *10;
+        mSpeed.x = newSpeedY;
         BounceY();
     }
-    if (ballPos.y - BALLRADIUS / 2 > paddle.GetPaddleRect().y) {
-        ballPos = { 400, 250 };
-        speed = { 200, 200 };
+    if (mBallPos.y > paddle.GetPaddleRect().y) {
+        mBallPos = { 400, 250 };
+        mSpeed = { 200, 200 };
     }
 }
 
 void Ball::DrawBall()
 {
-    DrawCircle(ballPos.x, ballPos.y, BALLRADIUS, RED);
+    DrawCircle(mBallPos.x, mBallPos.y, BALLRADIUS, RED);
 }
 
 void Ball::BounceX()
 {
-    speed.x *= -1;
+    mSpeed.x *= -1;
 }
 
 void Ball::BounceY()
 {
-    speed.y *= -1;
+    mSpeed.y *= -1;
 }
 
 int Ball::GetRadius()
@@ -65,7 +65,17 @@ int Ball::GetRadius()
     return BALLRADIUS;
 }
 
+void Ball::SetSpeed(Vector2 speed)
+{
+    mSpeed = speed;
+}
+
+Vector2 Ball::GetSpeed()
+{
+    return mSpeed;
+}
+
 Vector2 Ball::GetPosition()
 {
-    return ballPos;
+    return mBallPos;
 }
