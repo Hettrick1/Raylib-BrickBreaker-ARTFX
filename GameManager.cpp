@@ -18,12 +18,12 @@ GameManager::~GameManager()
 void GameManager::Update()
 {
 	paddle.Update(WIDTH);
-	ball.Update(WIDTH, HEIGHT, paddle);
 	for (int i = 0; i < 4; i++) {
 		for (int j = 0; j < 10; j++) {
 			map[i][j].Update(ball);
 		}
 	}
+	ball.Update(WIDTH, HEIGHT, paddle);
 }
 
 void GameManager::Draw()

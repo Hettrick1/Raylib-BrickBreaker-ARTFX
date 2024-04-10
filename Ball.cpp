@@ -34,7 +34,7 @@ void Ball::CheckCollision(const int WIDTH, const int HEIGHT, Paddle paddle)
     {
         float collisionPosition = (mBallPos.x - (paddle.GetPaddleRect().x + paddle.GetPaddleRect().width/2));
 
-        float newSpeedY = mSpeed.x * std::abs(collisionPosition) / (paddle.GetPaddleRect().width / 2);
+        float newSpeedY = -mMaxSpeed.x * std::abs(collisionPosition) / (paddle.GetPaddleRect().width / 2);
 
         mSpeed.x = newSpeedY;
         BounceY();
@@ -68,6 +68,10 @@ int Ball::GetRadius()
 void Ball::SetSpeed(Vector2 speed)
 {
     mSpeed = speed;
+}
+
+void Ball::SetPos(Vector2 position)
+{
 }
 
 Vector2 Ball::GetSpeed()
