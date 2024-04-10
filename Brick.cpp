@@ -50,7 +50,7 @@ void Brick::LooseLife()
 
 bool Brick::CheckCollisions(Ball ball)
 {
-	return ball.GetPosition().x < mBrickRectangle.x + mBrickRectangle.width && ball.GetPosition().x + ball.GetRadius() > mBrickRectangle.x && ball.GetPosition().y < mBrickRectangle.y + mBrickRectangle.height && ball.GetPosition().y + ball.GetRadius() > mBrickRectangle.y;
+	return ball.GetPosition().x - ball.GetRadius() < mBrickRectangle.x + mBrickRectangle.width && ball.GetPosition().x + ball.GetRadius() > mBrickRectangle.x && ball.GetPosition().y - ball.GetRadius() < mBrickRectangle.y + mBrickRectangle.height && ball.GetPosition().y + ball.GetRadius() > mBrickRectangle.y;
 }
 
 Rectangle Brick::GetBrickRectangle()
