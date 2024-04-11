@@ -4,7 +4,7 @@ class Paddle
 {
 private:
 	Rectangle mPaddleRectangle;
-	Vector2 mPaddleSpeed = { 350, 0 };
+	Vector2 mPaddleSpeed = { 450, 0 };
 public:
 	Paddle();
 	Paddle(Rectangle paddlePos);

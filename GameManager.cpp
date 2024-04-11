@@ -98,9 +98,9 @@ void GameManager::InitializeGame()
 	Vector2 coordinates = { 40,0 };
 	for (int i = 0; i < colones; i++) {
 		coordinates.x = 40;
-		coordinates.y += 50;
+		coordinates.y += 22;
 		for (int j = 0; j < 10; j++) {
-			Brick brick = Brick(Rectangle{ coordinates.x, coordinates.y, 98.4, 30 }, Vector2{ (float)i, (float)j }, 2, BLUE);
+			Brick brick = Brick(Rectangle{ coordinates.x, coordinates.y, 98.4, 20 }, Vector2{ (float)i, (float)j }, 1, BLUE);
 			switch (index)
 			{
 			case 0:
