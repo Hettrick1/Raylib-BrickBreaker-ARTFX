@@ -4,6 +4,7 @@
 
 Ball::Ball()
 {
+    mScore = 0;
 }
 
 Ball::~Ball()
@@ -34,7 +35,7 @@ void Ball::CheckCollision(const int WIDTH, const int HEIGHT, Paddle paddle)
     {
         float collisionPosition = (mBallPos.x - (paddle.GetPaddleRect().x + paddle.GetPaddleRect().width/2));
 
-        float newSpeedY = -mMaxSpeed.x * std::abs(collisionPosition) / (paddle.GetPaddleRect().width / 2);
+        float newSpeedY = mMaxSpeed.x * collisionPosition / (paddle.GetPaddleRect().width / 2);
 
         mSpeed.x = newSpeedY;
         BounceY();
@@ -48,6 +49,7 @@ void Ball::CheckCollision(const int WIDTH, const int HEIGHT, Paddle paddle)
 void Ball::DrawBall()
 {
     DrawCircle(mBallPos.x, mBallPos.y, BALLRADIUS, RED);
+    DrawText(TextFormat("%i", mScore), 10, 20, 20, BLACK);
 }
 
 void Ball::BounceX()
@@ -83,4 +85,13 @@ Vector2 Ball::GetSpeed()
 Vector2 Ball::GetPosition()
 {
     return mBallPos;
+}
+int Ball::GetScore()
+{
+    return mScore;
+}
+
+void Ball::AddScore(int score)
+{
+    mScore += score;
 }

@@ -3,6 +3,8 @@
 Ball ball;
 Paddle paddle = Paddle();
 
+int score = 0;
+
 Brick map[4][10];
 
 GameManager::GameManager(int Width, int Height)
@@ -45,9 +47,9 @@ void GameManager::CreateGame()
 		coordinates.x = 40;
 		coordinates.y += 50;
 		for (int j = 0; j < 10; j++) {
-			Brick brick = Brick(Rectangle{ coordinates.x, coordinates.y, 80, 30 }, Vector2{ (float)i, (float)j }, 2, BLUE);
+			Brick brick = Brick(Rectangle{ coordinates.x, coordinates.y, 98.4, 30 }, Vector2{ (float)i, (float)j }, 2, BLUE);
 			map[i][j] = brick;
-			coordinates.x += 100;
+			coordinates.x += 100.4;
 		}
 	}
 }

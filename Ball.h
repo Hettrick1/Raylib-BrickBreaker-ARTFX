@@ -7,6 +7,7 @@ private:
 	Vector2 mBallPos = { 400, 250 };
 	Vector2 mSpeed = { 200, 200 };
 	Vector2 mMaxSpeed = { 200, 200 };
+	int mScore = 0;
 	const int BALLRADIUS = 10;
 public:
 	Ball();
@@ -22,5 +23,7 @@ public:
 	void SetPos(Vector2 position);
 	Vector2 GetSpeed();
 	Vector2 GetPosition();
+	int GetScore();
+	void AddScore(int score);
 };
 
