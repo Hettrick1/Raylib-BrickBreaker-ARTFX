@@ -12,14 +12,14 @@ Ball::~Ball()
 
 void Ball::Update(const int WIDTH, const int HEIGHT, Paddle paddle)
 {
-    Move(GetFrameTime());
+    Move();
     CheckCollision(WIDTH, HEIGHT, paddle);
 }
 
-void Ball::Move(float deltaTime)
+void Ball::Move()
 {
-    mBallPos.x += mSpeed.x * deltaTime;
-    mBallPos.y += mSpeed.y * deltaTime;
+    mBallPos.x += mSpeed.x * GetFrameTime();
+    mBallPos.y += mSpeed.y * GetFrameTime();
 }
 
 void Ball::CheckCollision(const int WIDTH, const int HEIGHT, Paddle paddle)
@@ -41,7 +41,7 @@ void Ball::CheckCollision(const int WIDTH, const int HEIGHT, Paddle paddle)
     }
     if (mBallPos.y > paddle.GetPaddleRect().y) {
         mBallPos = { 400, 250 };
-        mSpeed = { 200, 200 };
+        mSpeed = mMaxSpeed;
     }
 }
 
@@ -72,6 +72,7 @@ void Ball::SetSpeed(Vector2 speed)
 
 void Ball::SetPos(Vector2 position)
 {
+    mBallPos = position;
 }
 
 Vector2 Ball::GetSpeed()

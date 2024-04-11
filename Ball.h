@@ -12,7 +12,7 @@ public:
 	Ball();
 	~Ball();
 	void Update(const int WIDTH, const int HEIGHT, Paddle paddle);
-	void Move(float deltaTime);
+	void Move();
 	void CheckCollision(const int WIDTH, const int HEIGHT, Paddle paddle);
 	void DrawBall();
 	void BounceX();
