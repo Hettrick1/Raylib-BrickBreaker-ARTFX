@@ -27,27 +27,26 @@ GameManager::~GameManager()
 
 void GameManager::Update()
 {
-	for (int i = 0; i < colones; i++) {
-		for (int j = 0; j < 10; j++) {
-			switch (index)
-			{
-			case 0:
-				level1[i][j].Update(ball);
-				break;
-			case 1:
-				level2[i][j].Update(ball);
-				break;
-			case 2:
-				level3[i][j].Update(ball);
-				break;
-			case 3:
-				level4[i][j].Update(ball);
-				break;
-			}
-		}
+	int j = round((ball.GetPosition().x) / 98.4)-1;
+	int i = round((ball.GetPosition().y) / 20)-1;
+	switch (index)
+	{
+	case 0:
+		level1[i][j].Update(ball);
+		break;
+	case 1:
+		level2[i][j].Update(ball);
+		break;
+	case 2:
+		level3[i][j].Update(ball);
+		break;
+	case 3:
+		level4[i][j].Update(ball);
+		break;
 	}
 	paddle.Update(WIDTH);
 	ball.Update(WIDTH, HEIGHT, paddle);
+	
 	if (IsEverythingDestroyed()) {
 		if (colones < 12) {
 			colones += 3;
