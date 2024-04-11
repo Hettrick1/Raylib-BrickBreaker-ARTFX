@@ -41,8 +41,8 @@ void Ball::CheckCollision(const int WIDTH, const int HEIGHT, Paddle paddle)
         BounceY();
     }
     if (mBallPos.y > paddle.GetPaddleRect().y) {
-        mBallPos = { 400, 250 };
-        mSpeed = mMaxSpeed;
+        mBallPos = { 540, 600 };
+        mSpeed = { 0, 200 };
     }
 }
 

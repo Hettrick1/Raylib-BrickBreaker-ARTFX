@@ -15,5 +15,7 @@ public:
 	void Update();
 	void Draw();
 	void CreateGame();
+	void InitializeGame();
+	bool IsEverythingDestroyed();
 };
 
