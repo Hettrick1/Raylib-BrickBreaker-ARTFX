@@ -17,5 +17,6 @@ public:
 	void CreateGame();
 	void InitializeGame();
 	bool IsEverythingDestroyed();
+	void EndGame();
 };
 

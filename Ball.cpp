@@ -31,7 +31,7 @@ void Ball::CheckCollision(const int WIDTH, const int HEIGHT, Paddle paddle)
     else if (mBallPos.y - BALLRADIUS < 0 || mBallPos.y + BALLRADIUS > HEIGHT) {
         BounceY();
     }
-    if (mBallPos.y + BALLRADIUS / 2 >= paddle.GetPaddleRect().y && mBallPos.x - BALLRADIUS / 2 > paddle.GetPaddleRect().x && mBallPos.x + BALLRADIUS / 2 < paddle.GetPaddleRect().x + paddle.GetPaddleRect().width)
+    if (mBallPos.y + BALLRADIUS >= paddle.GetPaddleRect().y -1 && mBallPos.x - BALLRADIUS > paddle.GetPaddleRect().x - 1 && mBallPos.x + BALLRADIUS < paddle.GetPaddleRect().x + paddle.GetPaddleRect().width +1)
     {
         float collisionPosition = (mBallPos.x - (paddle.GetPaddleRect().x + paddle.GetPaddleRect().width/2));
 

@@ -9,6 +9,7 @@ int life = 5;
 
 bool isAlreadyPlaying = false;
 bool gameStarted = false;
+bool gameEnded = false;
 
 Brick level1[5][9];
 Brick level2[8][9];
@@ -27,10 +28,18 @@ GameManager::~GameManager()
 
 void GameManager::Update()
 {
-	if (!gameStarted && IsKeyPressed(KEY_ENTER))
+	if (!gameStarted && IsKeyPressed(KEY_ENTER) && !gameEnded)
 	{
 		gameStarted = true;
 		ball.SetSpeed({ 0, 300 });
+	}
+	if (gameEnded && IsKeyPressed(KEY_ENTER) && !gameStarted) {
+		life = 5;
+		colones = 5;
+		index = 0;
+		ball.AddScore(-ball.GetScore());
+		ball.SetPos({ 540, 600 });
+		CreateGame();
 	}
 
 	for (int i = 0; i < colones; i++) {
@@ -52,7 +61,7 @@ void GameManager::Update()
 			}
 		}
 	}
-	if (ball.GetPosition().y > paddle.GetPaddleRect().y) {
+	if (ball.GetPosition().y - ball.GetRadius() > paddle.GetPaddleRect().y) {
 		ball.SetPos({ 540, 600 });
 		ball.SetSpeed({ 0, 300 });
 		paddle.SetPos({ (float)(WIDTH / 2.0 - 60), (float)(HEIGHT - HEIGHT / 10.0) });
@@ -75,47 +84,56 @@ void GameManager::Update()
 		if (colones < 12) {
 			colones += 3;
 			index += 1;
+			ball.SetPos({ 540, 600 });
+			ball.SetSpeed({ 0, 300 });
+			paddle.SetPos({ (float)(WIDTH / 2.0 - 60), (float)(HEIGHT - HEIGHT / 10.0) });
 			InitializeGame();
 		}
 		else {
-			colones = 5;
-			index = 0;
-			InitializeGame();
+			EndGame();
 		}
 	}
 }
 
 void GameManager::Draw()
 {
-	paddle.DrawPaddle();
-	ball.DrawBall();
-	for (int i = 0; i < colones; i++) {
-		for (int j = 0; j < 9; j++) {
-			switch (index)
-			{
-			case 0:
-				level1[i][j].Draw();
-				break;
-			case 1:
-				level2[i][j].Draw();
-				break;
-			case 2:
-				level3[i][j].Draw();
-				break;
-			case 3:
-				level4[i][j].Draw();
-				break;
-			};
+	if (!gameEnded) {
+		paddle.DrawPaddle();
+		ball.DrawBall();
+		for (int i = 0; i < colones; i++) {
+			for (int j = 0; j < 9; j++) {
+				switch (index)
+				{
+				case 0:
+					level1[i][j].Draw();
+					break;
+				case 1:
+					level2[i][j].Draw();
+					break;
+				case 2:
+					level3[i][j].Draw();
+					break;
+				case 3:
+					level4[i][j].Draw();
+					break;
+				};
+			}
 		}
+		DrawText(TextFormat("Lives : %i", life), 980, 680, 20, BLACK);
 	}
-	DrawText(TextFormat("Lives : %i", life), 980, 680, 20, BLACK);
-	if (!gameStarted) {
+	if (!gameStarted && !gameEnded) {
 		DrawText("Press Enter to start...", 540 - MeasureText("Press Enter to start...", 30) / 2, 680, 30, GRAY);
+	}
+	if (gameEnded) {
+		DrawText("Game Over", 540 - MeasureText("Game Over", 40) / 2, 150, 40, BLACK );
+		DrawText(TextFormat("Score : %i", ball.GetScore()), 540 - MeasureText(TextFormat("Score : %i", ball.GetScore()), 30) / 2, 360, 30, BLACK);
+		DrawText("Press Enter to start...", 540 - MeasureText("Press Enter to start...", 30) / 2, 500, 30, GRAY);
 	}
 }
 
 void GameManager::CreateGame()
 {
+	gameEnded = false;
 	if (!isAlreadyPlaying) {
 		paddle = Paddle(Rectangle{ (float)(WIDTH / 2.0 - 60), (float)(HEIGHT - HEIGHT / 10.0), 120, 10 });
 	}
@@ -181,4 +199,11 @@ bool GameManager::IsEverythingDestroyed()
 		}
 	}
 	return true;
+}
+
+void GameManager::EndGame()
+{
+	ball.SetSpeed({ 0, 0 });
+	gameEnded = true;
+	gameStarted = false;
 }

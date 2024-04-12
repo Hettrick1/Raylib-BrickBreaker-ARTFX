@@ -30,7 +30,7 @@ void Paddle::Update(const int WIDTH)
 
 void Paddle::DrawPaddle()
 {
-	DrawRectangle(mPaddleRectangle.x, mPaddleRectangle.y, mPaddleRectangle.width, mPaddleRectangle.height, BLACK);
+	DrawRectangle(mPaddleRectangle.x+2.5, mPaddleRectangle.y, mPaddleRectangle.width-5, mPaddleRectangle.height, BLACK);
 }
 
 Rectangle Paddle::GetPaddleRect()
