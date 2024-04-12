@@ -37,3 +37,9 @@ Rectangle Paddle::GetPaddleRect()
 {
 	return mPaddleRectangle;
 }
+
+void Paddle::SetPos(Vector2 pos)
+{
+	mPaddleRectangle.x = pos.x;
+	mPaddleRectangle.y = pos.y;
+}

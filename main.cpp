@@ -28,7 +28,7 @@ int main() {
 }
 void Load()
 {
-    InitWindow(WIDTH, HEIGHT, "Make More!");
+    InitWindow(WIDTH, HEIGHT, "Brick Breaker");
     SetTargetFPS(60);
 }
 

@@ -5,8 +5,8 @@ class Ball
 {
 private:
 	Vector2 mBallPos = { 540, 600 };
-	Vector2 mSpeed = { 0 , 200 };
-	Vector2 mMaxSpeed = { 200, 200 };
+	Vector2 mSpeed = { 0 , 0 };
+	Vector2 mMaxSpeed = { 300, 300 };
 	int mScore = 0;
 	const int BALLRADIUS = 10;
 public:

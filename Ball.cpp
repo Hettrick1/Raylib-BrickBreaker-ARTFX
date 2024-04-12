@@ -40,16 +40,12 @@ void Ball::CheckCollision(const int WIDTH, const int HEIGHT, Paddle paddle)
         mSpeed.x = newSpeedY;
         BounceY();
     }
-    if (mBallPos.y > paddle.GetPaddleRect().y) {
-        mBallPos = { 540, 400 };
-        mSpeed = { 0, 300 };
-    }
 }
 
 void Ball::DrawBall()
 {
     DrawCircle(mBallPos.x, mBallPos.y, BALLRADIUS, RED);
-    DrawText(TextFormat("%i", mScore), 10, 20, 20, BLACK);
+    DrawText(TextFormat("Score : %i", mScore), 10, 680, 20, BLACK);
 }
 
 void Ball::BounceX()

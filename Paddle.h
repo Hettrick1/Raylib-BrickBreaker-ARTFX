@@ -13,5 +13,6 @@ public:
 	void Update(const int WIDTH);
 	void DrawPaddle();
 	Rectangle GetPaddleRect();
+	void SetPos(Vector2 pos);
 };
 
